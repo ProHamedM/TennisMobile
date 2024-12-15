@@ -164,7 +164,7 @@ public class Opponent : MonoBehaviour {
 		
 		ball.position = spawnPosition == null ? servePoint.position : spawnPosition.position;
 		
-		rb.velocity = direction * force + Vector3.up * upForce;
+		rb.linearVelocity = direction * force + Vector3.up * upForce;
 	}
 	
 	//make sure we don't hit twice at the same time

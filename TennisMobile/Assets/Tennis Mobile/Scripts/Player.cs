@@ -258,7 +258,7 @@ public class Player : MonoBehaviour {
 			startTime = Time.time;
 			
 			if(ball != null){
-				startVelocity = ball.GetComponent<Rigidbody>().velocity;
+				startVelocity = ball.GetComponent<Rigidbody>().linearVelocity;
 			
 				ball.GetComponent<Rigidbody>().isKinematic = true;
 			}
@@ -283,7 +283,7 @@ public class Player : MonoBehaviour {
 				
 		if(lastFillAmount < 0){
 			ball.GetComponent<Rigidbody>().isKinematic = false;
-			ball.GetComponent<Rigidbody>().velocity = startVelocity;
+			ball.GetComponent<Rigidbody>().linearVelocity = startVelocity;
 		}
 	}
 	
@@ -354,7 +354,7 @@ public class Player : MonoBehaviour {
 		
 		//check if this is the serve, or if we're just hitting the ball during the game and set the ball velocity
 		if(lastFillAmount < 0){
-			rb.velocity = direction * force + Vector3.up * upForce;
+			rb.linearVelocity = direction * force + Vector3.up * upForce;
 		}
 		else{			
 			StartCoroutine(ServeAnim(rb, direction, lastFillAmount > 0.8f));
@@ -381,7 +381,7 @@ public class Player : MonoBehaviour {
 		yield return new WaitForSeconds(0.28f);
 		
 		float barForce = force * 0.8f + (force * lastFillAmount * 0.3f);
-		rb.velocity = direction * barForce + Vector3.up * upForce;
+		rb.linearVelocity = direction * barForce + Vector3.up * upForce;
 		
 		encouragingTexts.ShowText(lastFillAmount);
 		
